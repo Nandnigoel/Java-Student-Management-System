@@ -1,49 +1,165 @@
+import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         StudentManagementSystem sms=new StudentManagementSystem();
 
-        Student s1 = new Student(
-                101,
-                "Nandni",
-                20, 
-                "CSE-DS"
-        );
+        while(true) {
 
-        Student s2 = new Student(
-                102,
-                "Rahul",
-                21,
-                "CSE"
-        );
+            System.out.println("\n===== Student Management System =====");
+            System.out.println("1. Add Student");
+            System.out.println("2. Display Students");
+            System.out.println("3. Search Student");
+            System.out.println("4. Update Student");
+            System.out.println("5. Delete Student");
+            System.out.println("6. Exit");
 
-        sms.addStudent(s1);
-        sms.addStudent(s2);
+            System.out.print("Enter your choice: ");
 
-        sms.displayStudents();
+            int choice;
+            try{
+                choice = sc.nextInt();
+            }
+            catch(Exception e){
+                System.out.println("Invalid Input! Please enter a number.");
+                sc.nextLine();
+                continue;
+            }
+            switch(choice) {
 
-        Student foundStudent = sms.searchStudent(102);
-        System.out.println("\nSearch Result:");
-        if(foundStudent != null) {
-            System.out.println(foundStudent);
+                case 1:
+                    System.out.print("Enter ID: ");
+                    int id;
+                    try{
+                        id = sc.nextInt();
+                    }catch(Exception e){
+                        System.out.println("Invalid ID!");
+                        sc.nextLine();
+                        break;
+                    }
+                    sc.nextLine();
+
+                    System.out.print("Enter Name: ");
+                    String name = sc.nextLine();
+                    if(name.trim().isEmpty()){
+                        System.out.println("Name cannot be empty!");
+                        break;
+                    }
+
+                    System.out.print("Enter Age: ");
+                    int age;
+                    try{
+                        age = sc.nextInt();
+                        if(age <= 0){
+                            System.out.println("Age must be greater than 0!");
+                            break;
+                        }
+                    }catch(Exception e){
+                        System.out.println("Invalid AGE!");
+                        sc.nextLine();
+                        break;
+                    }
+
+                    sc.nextLine();
+
+                    System.out.print("Enter Course: ");
+                    String course = sc.nextLine();
+                    if(course.trim().isEmpty()){
+                        System.out.println("Course cannot be empty!");
+                        break;
+                    }
+
+                    Student student=new Student(id, name, age, course);
+
+                    sms.addStudent(student);
+                    break;
+
+                case 2:
+                    sms.displayStudents();
+                    break;
+
+                case 3:
+                    System.out.print("Enter Student ID to Search: ");
+                    int searchId;
+                    try{
+                        searchId = sc.nextInt();
+                    }catch(Exception e){
+                        System.out.println("Invalid ID!");
+                        sc.nextLine();
+                        break;
+                    }
+
+                    Student foundStudent = sms.searchStudent(searchId);
+
+                    if(foundStudent != null) {
+                        System.out.println(foundStudent);
+                    }
+                    else {
+                        System.out.println("Student not found!");
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("Enter Student ID to Update: ");
+                    int updated_ID;
+                    try{
+                        updated_ID=sc.nextInt();
+                    }catch(Exception e){
+                        System.out.println("Invalid ID!");
+                        sc.nextLine();
+                        break;
+                    }
+                    sc.nextLine();
+                    System.out.print("Enter New Name: ");
+                    String updated_name=sc.nextLine();
+                    if(updated_name.trim().isEmpty()){
+                        System.out.println("Name cannot be empty!");
+                        break;
+                    }
+                    System.out.print("Enter New Age: ");
+                    int updated_age;
+                    try{
+                        updated_age=sc.nextInt();
+                        if(updated_age<=0){
+                            System.out.println("Age must be greater than 0!");
+                            break;
+                        }
+                    }catch(Exception e){
+                        System.out.println("Invalid AGE!");
+                        sc.nextLine();
+                        break;
+                    }
+                    sc.nextLine();
+                    System.out.print("Enter New Course: ");
+                    String updated_course=sc.nextLine();
+                    if(updated_course.trim().isEmpty()){
+                        System.out.println("Course cannot be empty!");
+                        break;
+                    }
+                    sms.updateStudent(updated_ID,updated_name,updated_age,updated_course);
+                    break;
+
+                case 5:
+                    System.out.print("Enter Student ID to Delete: ");
+                    int ID;
+                    try{
+                        ID=sc.nextInt();
+                    }catch(Exception e){
+                        System.out.println("Invalid ID!");
+                        sc.nextLine();
+                        break;
+                    }
+                    sms.deleteStudent(ID);
+                    break;
+
+                case 6:
+                    System.out.println("Exiting...");
+                    return;
+
+                default:
+                    System.out.println("Invalid Choice!");
+            }
         }
-        else {
-            System.out.println("Student not found!");
-        }
-
-        System.out.println("\nDeleting Student:");
-        sms.deleteStudent(102);
-        System.out.println("\nStudents After Deletion:");
-        sms.displayStudents();
-
-        System.out.println("\nUpdating Student:");
-        sms.updateStudent(
-            101,
-            "Nandni Goel",
-            21,
-            "CSE-DS"
-        );
-        System.out.println("\nStudents After Update:");
-        sms.displayStudents();
     }
 }
