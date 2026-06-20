@@ -9,7 +9,10 @@ A console-based Student Management System developed using Java and Object-Orient
 - Search Student by ID
 - Update Student Details
 - Delete Student Records
-
+- Menu-Driven Interface
+- Scanner-Based User Input
+- Exception Handling
+- Input Validation
 ## Technologies Used
 - Java
 - OOP Concepts
