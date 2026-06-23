@@ -13,6 +13,8 @@ A console-based Student Management System developed using Java and Object-Orient
 - Scanner-Based User Input
 - Exception Handling
 - Input Validation
+- File Handling
+- Data Persistence
 ## Technologies Used
 - Java
 - OOP Concepts
