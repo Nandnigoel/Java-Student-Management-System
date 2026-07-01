@@ -1,9 +1,10 @@
 import java.util.Scanner;
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         Scanner sc = new Scanner(System.in);
         StudentManagementSystem sms=new StudentManagementSystem();
+        StudentDAO dao = new StudentDAO();
 
         while(true) {
 
@@ -72,11 +73,11 @@ public class Main {
 
                     Student student=new Student(id, name, age, course);
 
-                    sms.addStudent(student);
+                    dao.addStudent(student);
                     break;
 
                 case 2:
-                    sms.displayStudents();
+                    dao.displayStudents();
                     break;
 
                 case 3:
@@ -90,14 +91,7 @@ public class Main {
                         break;
                     }
 
-                    Student foundStudent = sms.searchStudent(searchId);
-
-                    if(foundStudent != null) {
-                        System.out.println(foundStudent);
-                    }
-                    else {
-                        System.out.println("Student not found!");
-                    }
+                    dao.searchStudent(searchId);
                     break;
 
                 case 4:
@@ -137,7 +131,8 @@ public class Main {
                         System.out.println("Course cannot be empty!");
                         break;
                     }
-                    sms.updateStudent(updated_ID,updated_name,updated_age,updated_course);
+                    Student st=new Student(updated_ID, updated_name, updated_age, updated_course);
+                    dao.updateStudent(st);
                     break;
 
                 case 5:
@@ -150,7 +145,7 @@ public class Main {
                         sc.nextLine();
                         break;
                     }
-                    sms.deleteStudent(ID);
+                    dao.deleteStudent(ID);
                     break;
 
                 case 6:

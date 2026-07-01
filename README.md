@@ -15,15 +15,29 @@ A console-based Student Management System developed using Java and Object-Orient
 - Input Validation
 - File Handling
 - Data Persistence
+- JDBC Connectivity
+- MySQL Database Integration
+
 ## Technologies Used
 - Java
-- OOP Concepts
+- JDBC
+- MySQL
 - ArrayList
+- File Handling
+## Concepts Used
+- Classes and Objects
+- Encapsulation
+- ArrayList Collection
+- CRUD Operations
+- OOP Concepts
 
 ## Project Structure
 - Main.java
 - Student.java
 - StudentManagementSystem.java
+- DBConnection.java
+- StudentDAO.java
+- students.txt
 
 ## Concepts Used
 - Classes and Objects
